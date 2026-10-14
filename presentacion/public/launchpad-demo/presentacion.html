@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Native Launchpad | Presentaci&oacute;n</title>
+  <style>
+    :root { color-scheme: light; --ink: #17212b; --muted: #5b6775; --line: #dce2e8; --accent: #0865e8; --paper: #fff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; height: 100dvh; overflow: hidden; background: transparent; color: var(--ink); font-family: "Trebuchet MS", sans-serif; letter-spacing: 0; }
+    header, footer { background: var(--paper); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    header, footer { display: none; }
+    header { border-bottom: 1px solid var(--line); }
+    .brand { font-family: Georgia, serif; font-size: 22px; font-weight: bold; white-space: nowrap; }
+    .section-picker { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    select { max-width: 340px; min-width: 0; padding: 9px 12px; border: 1px solid var(--line); border-radius: 6px; background: #f7f9fc; color: var(--ink); font: inherit; }
+    main { width: 100%; height: 100%; min-height: 0; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    #screen { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+    #step-dots { position: absolute; z-index: 2; left: 50%; bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; max-width: calc(100% - 12px); padding: 5px 7px; transform: translateX(-50%); background: rgba(255,255,255,.82); border-radius: 999px; }
+    #step-dots::before { position: absolute; left: 12px; right: 12px; top: 50%; height: 1px; background: #bdc8d3; content: ""; }
+    #step-dots button { position: relative; width: 7px; min-width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: #9aa8b7; cursor: pointer; }
+    #step-dots button[data-state="complete"] { background: #0072bc; }
+    #step-dots button[aria-current="step"] { width: 10px; min-width: 10px; height: 10px; background: #0072bc; outline: 2px solid #fff; outline-offset: 1px; }
+    footer { border-top: 1px solid var(--line); }
+    .step-meta { min-width: 0; }
+    #step-title { margin: 0; font-size: 17px; line-height: 1.3; }
+    #counter { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .controls { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    button { height: 42px; min-width: 42px; padding: 0 13px; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); background: var(--paper); cursor: pointer; font: inherit; display: inline-flex; justify-content: center; align-items: center; gap: 9px; }
+    button:hover:not(:disabled) { background: #edf3fa; border-color: #a6b8ce; }
+    button:disabled { opacity: .4; cursor: default; }
+    button:focus-visible, select:focus-visible { outline: 3px solid #75adff; outline-offset: 3px; }
+    .symbol { font-family: sans-serif; font-size: 23px; line-height: 1; }
+    #next { min-width: 138px; background: var(--accent); border-color: var(--accent); color: #fff; }
+    #next:hover:not(:disabled) { background: #0055c8; }
+    #loading { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); margin: 0; padding: 9px 16px; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 3px 14px #17212b1a; }
+    #loading[hidden] { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    @media (max-width: 650px) {
+      header, footer { padding: 12px; gap: 10px; }
+      header { flex-wrap: wrap; }
+      .brand { font-size: 20px; flex-basis: 100%; }
+      .section-picker { flex: 1; }
+      select { width: 100%; max-width: none; font-size: 13px; }
+      main { padding: 4px; }
+      footer { flex-wrap: wrap; }
+      .step-meta { flex-basis: 100%; }
+      .controls { width: 100%; }
+      #next { margin-left: auto; }
+      #step-title { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">AI Native Launchpad</div>
+    <div class="section-picker">
+      <label for="section" class="sr-only">Secci&oacute;n</label>
+      <select id="section" aria-label="Secci&oacute;n"></select>
+      <button id="fullscreen" type="button" title="Pantalla completa" aria-label="Pantalla completa"><span class="symbol" aria-hidden="true">&#x26F6;</span></button>
+    </div>
+  </header>
+  <main id="stage" data-state="loading" data-step="0">
+    <img id="screen" alt="Proyectos de AI Native Launchpad" draggable="false">
+    <nav id="step-dots" aria-label="Paradas del recorrido"></nav>
+    <p id="loading" role="status">Cargando&hellip;</p>
+  </main>
+  <footer>
+    <div class="step-meta">
+      <h1 id="step-title">Proyectos</h1>
+      <span id="counter">1 / 20</span>
+    </div>
+    <nav class="controls" aria-label="Controles de presentaci&oacute;n">
+      <button id="restart" type="button" title="Volver al inicio" aria-label="Volver al inicio"><span class="symbol" aria-hidden="true">&#x21E4;</span></button>
+      <button id="previous" type="button" title="Anterior" aria-label="Anterior"><span class="symbol" aria-hidden="true">&#x2190;</span></button>
+      <button id="replay" type="button" title="Repetir transici&oacute;n" aria-label="Repetir transici&oacute;n"><span class="symbol" aria-hidden="true">&#x21BB;</span></button>
+      <button id="next" type="button"><span id="next-label">Siguiente</span><span class="symbol" aria-hidden="true">&#x2192;</span></button>
+    </nav>
+    <span id="announcement" class="sr-only" aria-live="polite"></span>
+  </footer>
+  <script src="ampliacion/recorrido.js"></script>
+  <script src="detalles/recorrido.js"></script>
+  <script>
+    const extension = window.launchpadExtension;
+    const details = window.launchpadDetails;
+    const steps = details.steps;
+    const screen = document.getElementById('screen');
+    const stage = document.getElementById('stage');
+    const loading = document.getElementById('loading');
+    const section = document.getElementById('section');
+    const previous = document.getElementById('previous');
+    const next = document.getElementById('next');
+    const replay = document.getElementById('replay');
+    const restart = document.getElementById('restart');
+    const stepDots = document.getElementById('step-dots');
+    const decodedImages = new Map();
+    let currentStep = 0;
+    let busy = true;
+
+    steps.forEach((step, index) => {
+      const option = document.createElement('option');
+      option.value = String(index);
+      option.textContent = `${index + 1}. ${step.title}`;
+      section.appendChild(option);
+
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir a ${step.title}`);
+      dot.title = `${index + 1} de ${steps.length}`;
+      dot.addEventListener('click', () => void jump(index));
+      stepDots.appendChild(dot);
+    });
+
+    function duration(frame) {
+      if (frame > 230) return details.frames[frame - 231].duration;
+      if (frame > 109) return extension.frames[frame - 110].duration;
+      const position = (frame - 1) % 12;
+      if (position === 0) return 2200;
+      if (position === 9 || position === 10) return 100;
+      if (position === 11) return 400;
+      return 70;
+    }
+
+    function source(frame) {
+      if (frame > 230) return details.frames[frame - 231].source;
+      if (frame > 109) return extension.frames[frame - 110].source;
+      return `fotogramas/${String(frame).padStart(4, '0')}-${duration(frame)}.png`;
+    }
+
+    function decode(frame) {
+      if (!decodedImages.has(frame)) {
+        const pending = new Promise((resolve, reject) => {
+          const image = new Image();
+          image.onload = async () => {
+            try {
+              await image.decode();
+              resolve(image);
+            } catch (error) { reject(error); }
+          };
+          image.onerror = () => reject(new Error(`No se pudo cargar ${source(frame)}`));
+          image.src = source(frame);
+        });
+        decodedImages.set(frame, pending);
+        pending.catch(() => decodedImages.delete(frame));
+      }
+      return decodedImages.get(frame);
+    }
+
+    function controls() {
+      previous.disabled = busy || currentStep === 0;
+      replay.disabled = busy || currentStep === 0;
+      restart.disabled = busy || currentStep === 0;
+      next.disabled = busy || currentStep === steps.length - 1;
+      section.disabled = busy;
+      [...stepDots.children].forEach((dot, index) => {
+        dot.disabled = busy;
+        dot.dataset.state = index < currentStep ? 'complete' : 'upcoming';
+        if (index === currentStep) dot.setAttribute('aria-current', 'step');
+        else dot.removeAttribute('aria-current');
+      });
+      document.getElementById('next-label').textContent = busy ? 'En curso' : currentStep === steps.length - 1 ? 'Fin' : 'Siguiente';
+      stage.dataset.state = busy ? 'playing' : 'paused';
+    }
+
+    function render(frame) {
+      screen.src = source(frame);
+      screen.dataset.frame = String(frame);
+    }
+
+    function settle(index) {
+      currentStep = index;
+      busy = false;
+      render(steps[index].frame);
+      screen.alt = `AI Native Launchpad: ${steps[index].title}`;
+      document.getElementById('step-title').textContent = steps[index].title;
+      document.getElementById('counter').textContent = `${index + 1} / ${steps.length}`;
+      document.getElementById('announcement').textContent = steps[index].title;
+      section.value = String(index);
+      stage.dataset.step = String(index);
+      decodedImages.clear();
+      loading.hidden = true;
+      controls();
+    }
+
+    function failed(error) {
+      loading.textContent = error.message;
+      loading.hidden = false;
+      busy = false;
+      controls();
+    }
+
+    async function jump(index) {
+      if (busy || index < 0 || index >= steps.length) return;
+      busy = true;
+      controls();
+      try {
+        await decode(steps[index].frame);
+        settle(index);
+      } catch (error) { failed(error); }
+    }
+
+    async function transition(origin, destination) {
+      if (busy) return;
+      busy = true;
+      controls();
+      loading.textContent = 'Cargando\u2026';
+      loading.hidden = false;
+      const ranges = steps[destination].ranges ?? [[steps[origin].frame + 1, steps[destination].frame]];
+      try {
+        const frameNumbers = ranges.flatMap(([first, last]) => Array.from({ length: last - first + 1 }, (_, index) => first + index));
+        await Promise.all(frameNumbers.map(decode));
+        loading.hidden = true;
+        await new Promise(resolve => {
+          let position = 0;
+          let deadline;
+          function tick(time) {
+            if (deadline === undefined) {
+              render(frameNumbers[0]);
+              deadline = time + duration(frameNumbers[0]);
+            }
+            if (time >= deadline) {
+              position += 1;
+              if (position === frameNumbers.length) { resolve(); return; }
+              const frame = frameNumbers[position];
+              render(frame);
+              deadline = time + (duration(frame) === 2200 ? 350 : duration(frame));
+            }
+            requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+        settle(destination);
+      } catch (error) { failed(error); }
+    }
+
+    next.addEventListener('click', () => {
+      if (currentStep < steps.length - 1) void transition(currentStep, currentStep + 1);
+    });
+    previous.addEventListener('click', () => void jump(currentStep - 1));
+    restart.addEventListener('click', () => void jump(0));
+    replay.addEventListener('click', () => {
+      if (currentStep > 0) void transition(currentStep - 1, currentStep);
+    });
+    section.addEventListener('change', () => void jump(Number(section.value)));
+    document.getElementById('fullscreen').addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement) await document.exitFullscreen();
+        else await document.documentElement.requestFullscreen();
+      } catch (error) { document.getElementById('announcement').textContent = error.message; }
+    });
+    document.addEventListener('fullscreenchange', () => {
+      const label = document.fullscreenElement ? 'Salir de pantalla completa' : 'Pantalla completa';
+      document.getElementById('fullscreen').title = label;
+      document.getElementById('fullscreen').setAttribute('aria-label', label);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.target?.matches?.('select, input, textarea') || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') { event.preventDefault(); next.click(); }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); previous.click(); }
+      if (event.key === 'Home') { event.preventDefault(); restart.click(); }
+    });
+    controls();
+    decode(steps[0].frame).then(() => settle(0)).catch(failed);
+  </script>
+</body>
+</html>

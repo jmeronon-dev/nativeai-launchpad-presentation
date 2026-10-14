@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#060b10" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/png" href="./ainative-launchpad.png" />
+    <title>AI Native Launchpad | NTT DATA</title>
+  </head>
+  <body>
+    <div id="app" class="app" data-state="overview">
+      <canvas id="neural-canvas" aria-hidden="true"></canvas>
+      <div class="scene-scrim" aria-hidden="true"></div>
+
+      <header id="hero" class="hero is-visible" aria-labelledby="presentation-title">
+        <img class="hero-mark" src="./ainative-launchpad.png" alt="" />
+        <div class="hero-copy">
+          <p id="presentation-eyebrow" class="hero-context">De prompts sueltos a una forma compartida de trabajar con IA</p>
+          <h1 id="presentation-title" tabindex="-1">AI Native Launchpad</h1>
+          <p id="presentation-subtitle" class="hero-subtitle">
+            La IA ya sabe programar. El siguiente paso es enseñarle cómo trabaja cada equipo.
+          </p>
+          <button id="start-button" class="start-button" type="button">
+            Comenzar
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+          <p class="event-line">25 minutos · equipos de producto, tecnología y delivery</p>
+          <p id="keyword-summary" class="sr-only"></p>
+        </div>
+        <div id="keyword-field" class="keyword-field" aria-hidden="true"></div>
+      </header>
+
+      <main id="slide-stage" class="slide-stage"></main>
+
+      <div class="presentation-tools" role="group" aria-label="Herramientas">
+        <button id="overview-button" class="control-button" type="button" aria-label="Volver a la portada" title="Volver a la portada"><i data-lucide="network" aria-hidden="true"></i></button>
+        <button id="notes-button" class="control-button" type="button" aria-label="Notas del ponente" title="Notas del ponente"><i data-lucide="notebook-pen" aria-hidden="true"></i></button>
+        <button id="fullscreen-button" class="control-button" type="button" aria-label="Pantalla completa" title="Pantalla completa"><i data-lucide="maximize" aria-hidden="true"></i></button>
+      </div>
+
+      <nav class="deck-controls" aria-label="Controles de la presentación">
+        <button id="previous-button" class="control-button" type="button" aria-label="Anterior">
+          <i data-lucide="arrow-left" aria-hidden="true"></i>
+        </button>
+        <button id="slide-menu-button" class="slide-menu-button" type="button" aria-label="Abrir índice"><span id="position-label">Portada</span><i data-lucide="list" aria-hidden="true"></i></button>
+        <div id="progress-dots" class="progress-dots" aria-hidden="true"></div>
+        <button id="next-button" class="control-button" type="button" aria-label="Siguiente">
+          <i data-lucide="arrow-right" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <div class="brand-lockup">
+        <img id="brand-logo" data-approved-src="./brand/ntt-data-logo.svg" alt="NTT DATA" hidden />
+        <span id="brand-fallback" class="brand-fallback" aria-label="NTT DATA">NTT DATA</span>
+      </div>
+
+      <p id="deck-status" class="sr-only" aria-live="polite"></p>
+      <div id="webgl-fallback" class="webgl-fallback" hidden aria-hidden="true"></div>
+
+      <dialog id="index-dialog" class="deck-dialog" aria-labelledby="index-title">
+        <header class="dialog-header"><h2 id="index-title">El recorrido</h2><button class="control-button" type="button" data-close-dialog aria-label="Cerrar índice" title="Cerrar"><i data-lucide="x" aria-hidden="true"></i></button></header>
+        <div id="slide-index-list"></div>
+      </dialog>
+      <dialog id="notes-dialog" class="deck-dialog" aria-labelledby="notes-title">
+        <header class="dialog-header"><h2 id="notes-title">Notas del ponente</h2><button class="control-button" type="button" data-close-dialog aria-label="Cerrar notas" title="Cerrar"><i data-lucide="x" aria-hidden="true"></i></button></header>
+        <article id="speaker-notes" class="speaker-notes"></article>
+      </dialog>
+
+      <noscript>
+        <div class="noscript-message">Esta presentación necesita JavaScript para activar la navegación.</div>
+      </noscript>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

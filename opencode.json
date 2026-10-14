@@ -1,0 +1,116 @@
+{
+  "mcp": {
+    "jira": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/Cellar/node/25.2.1/bin/node",
+        "/Users/jmeronon/dev/nativeai-context/code/dist/jira-mcp.js"
+      ],
+      "environment": {
+        "JIRA_BASE_URL": "{env:JIRA_BASE_URL}",
+        "JIRA_AUTH_TYPE": "browser"
+      },
+      "enabled": true
+    },
+    "gitlab": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/Cellar/node/25.2.1/bin/node",
+        "/Users/jmeronon/dev/nativeai-context/code/dist/gitlab-mcp.js"
+      ],
+      "environment": {
+        "GITLAB_BASE_URL": "{env:GITLAB_BASE_URL}",
+        "GITLAB_TOKEN": "{env:GITLAB_TOKEN}"
+      },
+      "enabled": true
+    },
+    "bitbucket": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/Cellar/node/25.2.1/bin/node",
+        "/Users/jmeronon/dev/nativeai-context/code/dist/bitbucket-mcp.js"
+      ],
+      "environment": {
+        "BITBUCKET_BASE_URL": "{env:BITBUCKET_BASE_URL}",
+        "BITBUCKET_TOKEN": "{env:BITBUCKET_TOKEN}"
+      },
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/Cellar/node/25.2.1/bin/node",
+        "/Users/jmeronon/dev/nativeai-context/code/dist/github-mcp.js"
+      ],
+      "environment": {
+        "GITHUB_TOKEN": "{env:GITHUB_TOKEN}"
+      },
+      "enabled": true
+    },
+    "confluence": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/Cellar/node/25.2.1/bin/node",
+        "/Users/jmeronon/dev/nativeai-context/code/dist/confluence-mcp.js"
+      ],
+      "environment": {
+        "CONFLUENCE_BASE_URL": "{env:CONFLUENCE_BASE_URL}",
+        "CONFLUENCE_TOKEN": "{env:CONFLUENCE_TOKEN}"
+      },
+      "enabled": true
+    },
+    "figma": {
+      "type": "remote",
+      "url": "https://mcp.figma.com/mcp",
+      "enabled": true
+    },
+    "github-official": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_TOKEN}"
+      },
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@agentdeskai/browser-tools-mcp@latest"
+      ],
+      "environment": {},
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "environment": {},
+      "enabled": true
+    },
+    "powerbi": {
+      "type": "remote",
+      "url": "https://api.fabric.microsoft.com/v1/mcp/powerbi/authoring",
+      "enabled": true
+    },
+    "mobile": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@mobilenext/mobile-mcp"
+      ],
+      "environment": {},
+      "enabled": true
+    }
+  },
+  "$schema": "https://opencode.ai/config.json"
+}
