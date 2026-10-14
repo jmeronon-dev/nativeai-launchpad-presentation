@@ -1,0 +1,78 @@
+{
+  "skill": "ntt-neural-web-presentation",
+  "version": "1.0.0",
+  "activation_evals": [
+    {
+      "id": "activate-neural-html-deck",
+      "prompt": "Crea una presentación HTML de estrategia de IA para NTT DATA. La portada debe tener conceptos que huyan del ratón y una red neuronal; al avanzar quiero entrar con zoom en una neurona distinta por slide.",
+      "should_activate": true,
+      "expected": [
+        "persistent neural scene",
+        "pointer-repelled opening concepts",
+        "overview-to-node and node-to-node camera choreography",
+        "fixed NTT DATA logo"
+      ]
+    },
+    {
+      "id": "activate-existing-threejs-deck",
+      "prompt": "Revisa este proyecto Three.js y conviértelo en una presentación ejecutiva donde cada capítulo esté anclado a un nodo de la red y GSAP controle los viajes de cámara.",
+      "should_activate": true,
+      "expected": [
+        "preserve the supplied codebase",
+        "map slides to stable node IDs",
+        "add deterministic timelines and QA"
+      ]
+    },
+    {
+      "id": "activate-spanish-corporate-request",
+      "prompt": "Necesito un deck web inmersivo con colores corporativos de NTT DATA, logo fijo abajo a la derecha, navegación con flechas y una vista reducida sin animaciones.",
+      "should_activate": true,
+      "expected": [
+        "verified NTT Blue token",
+        "approved logo asset requirement",
+        "keyboard navigation",
+        "reduced-motion equivalent"
+      ]
+    }
+  ],
+  "non_activation_evals": [
+    {
+      "id": "do-not-activate-static-ppt",
+      "prompt": "Hazme una presentación PowerPoint corporativa de cinco slides sin animaciones.",
+      "should_activate": false,
+      "reason": "The request is for a conventional PPT artifact, not an immersive neural HTML deck."
+    },
+    {
+      "id": "do-not-activate-generic-site",
+      "prompt": "Crea una landing page para una cafetería con formulario de reservas.",
+      "should_activate": false,
+      "reason": "No presentation, neural navigation, or NTT DATA context is present."
+    }
+  ],
+  "quality_evals": [
+    {
+      "id": "camera-continuity",
+      "assertion": "Changing between content slides hides current content, pulls back through the network overview or an intentional waypoint, then dives into the next mapped neuron before revealing content."
+    },
+    {
+      "id": "state-resilience",
+      "assertion": "Rapid repeated navigation cannot desynchronize the active slide, active neuron, URL hash, progress marker, and camera destination."
+    },
+    {
+      "id": "accessibility",
+      "assertion": "Essential content is semantic HTML, keyboard operable, announced appropriately, readable without WebGL, and usable with prefers-reduced-motion."
+    },
+    {
+      "id": "brand-integrity",
+      "assertion": "The implementation uses #0072BC as the verified primary brand blue and never recreates or distorts the NTT DATA logo."
+    },
+    {
+      "id": "performance",
+      "assertion": "The neural scene uses bounded geometry, instancing or buffer primitives, adaptive pixel ratio, visibility pausing, and explicit disposal."
+    },
+    {
+      "id": "print",
+      "assertion": "A print/PDF mode exposes the opening and all substantive slide content without depending on the current animation state."
+    }
+  ]
+}
