@@ -253,10 +253,28 @@
       document.getElementById('fullscreen').title = label;
       document.getElementById('fullscreen').setAttribute('aria-label', label);
     });
+    // Returns false at the edges so the host deck can change slide.
+    window.launchpadWalkthrough = {
+      next() {
+        if (busy) return true;
+        if (currentStep >= steps.length - 1) return false;
+        void transition(currentStep, currentStep + 1);
+        return true;
+      },
+      previous() {
+        if (busy) return true;
+        if (currentStep <= 0) return false;
+        void jump(currentStep - 1);
+        return true;
+      },
+    };
+    function notifyHost(direction) {
+      if (window.parent !== window) window.parent.postMessage({ type: 'launchpad-walkthrough', direction }, window.location.origin);
+    }
     document.addEventListener('keydown', event => {
       if (event.target?.matches?.('select, input, textarea') || event.altKey || event.ctrlKey || event.metaKey) return;
-      if (event.key === 'ArrowRight' || event.key === 'PageDown') { event.preventDefault(); next.click(); }
-      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); previous.click(); }
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') { event.preventDefault(); if (!window.launchpadWalkthrough.next()) notifyHost('next'); }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); if (!window.launchpadWalkthrough.previous()) notifyHost('previous'); }
       if (event.key === 'Home') { event.preventDefault(); restart.click(); }
     });
     controls();

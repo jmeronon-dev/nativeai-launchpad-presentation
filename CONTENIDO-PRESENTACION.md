@@ -145,7 +145,29 @@ Usar tres bloques con icono, definicion, responsabilidad y ejemplo. Conectar vis
 
 Separar el modelo de cinco bloques del harness. Cada bloque incluye una responsabilidad y ejemplos concretos; un bucle visual devuelve validacion y feedback al contexto.
 
-## 6. AI Native Launchpad: que es y que hace
+## 6. Flujo de desarrollo con agentes
+
+**Tiempo asignado:** 2:00
+
+### En pantalla
+
+**Flujo de desarrollo con agentes**
+
+Diagrama: GitHub Copilot y el modelo de IA conectados al harness (Documentacion, MCPs, Skills y Agentes) y tres flujos:
+
+1. Refinamiento de tarea y planificacion.
+2. Desarrollo de tarea.
+3. Revision de Pull Request.
+
+### Narracion
+
+“Este es el harness aplicado a un caso real. Copilot y el modelo se apoyan en documentacion, MCPs, Skills y Agentes. Primero refinamos la tarea y dejamos un plan tecnico en Jira. Despues, el desarrollo pasa por rama, plan, implementacion, tests, comprobacion y revision de codigo, con aprobaciones humanas antes del commit y del merge. Por ultimo, la revision de la Pull Request deja feedback detallado en GitHub. Si hay correcciones, iteramos.”
+
+### Direccion visual
+
+Mostrar el diagrama completo a ancho de slide y recorrer los tres flujos de arriba abajo.
+
+## 7. AI Native Launchpad: que es y que hace
 
 **Tiempo asignado:** 3:30
 
@@ -168,7 +190,7 @@ Separar el modelo de cinco bloques del harness. Cada bloque incluye una responsa
 
 Mostrar el flujo **Proyecto → Tecnologia o artefacto → Contexto y capacidades → Workspace**. Utilizar una captura real de Project Context o del modal de preparacion.
 
-## 7. Recorriendo AI Native Launchpad
+## 8. Recorriendo AI Native Launchpad
 
 **Tiempo asignado:** 4:00
 
@@ -190,7 +212,7 @@ Mostrar el flujo **Proyecto → Tecnologia o artefacto → Contexto y capacidade
 
 La slide integra la presentación interactiva [presentacion.html](animacion-clics/presentacion.html). Recorrer proyecto, contexto, artefacto, Skill, prompt, workflow, resultado, catálogo MCP y workspace. La navegación usa capturas; no ejecuta acciones ni modifica Launchpad.
 
-## 8. Gracias y fin
+## 9. Gracias y fin
 
 **Tiempo asignado:** 1:00
 
@@ -211,7 +233,7 @@ Cerrar con AI Native Launchpad, el mensaje de responsabilidad compartida y una p
 ## Recomendaciones para presentar
 
 - Mantener en cada diapositiva una idea principal; utilizar la narracion para desarrollar el argumento.
-- Usar capturas reales del producto en las diapositivas 6 y 7, sin convertirlas en un inventario de funcionalidades.
+- Usar capturas reales del producto en las diapositivas 7 y 8, sin convertirlas en un inventario de funcionalidades.
 - En la demo, explicar primero el objetivo del recorrido y despues narrar solo las decisiones relevantes.
 - Diferenciar configuracion, ejecucion y evidencia. No afirmar que una herramienta está conectada o que un cambio está validado si no se ha comprobado.
 - La demo de la slide 7 se basa en capturas locales. No presentarla como navegación en vivo ni como evidencia de ejecución actual.

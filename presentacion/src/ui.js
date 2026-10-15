@@ -79,6 +79,7 @@ function renderSlideContent(slide, index, total) {
       ${renderBody(slide.body)}
       ${slide.quote ? `<blockquote class="slide-quote" data-reveal>${escapeHtml(slide.quote)}</blockquote>` : ''}
       ${renderFeatureCards(slide.featureCards)}
+      ${slide.figure ? `<figure class="slide-figure" data-reveal><img src="${escapeHtml(slide.figure.src)}" alt="${escapeHtml(slide.figure.alt)}" loading="lazy" /></figure>` : ''}
       ${slide.definitions ? `<dl class="definitions" data-reveal>${slide.definitions.map(([term, definition]) => `<div><dt>${escapeHtml(term)}</dt><dd>${escapeHtml(definition)}</dd></div>`).join('')}</dl>` : ''}
       ${slide.diagram ? `<ol class="concept-diagram ${slide.connected ? 'is-connected' : ''}" data-reveal>${slide.diagram.map((item) => {
         const [title, text] = item.split('|');

@@ -26,7 +26,7 @@ import notes from './notes.json' with { type: 'json' };
     },
     {
       id: 'problema', noteIndex: 3, timing: '2:30', group: 1, layout: 'statement', kicker: 'Configuración de IA distribuida',
-      title: 'El contexto se fragmenta entre equipos y herramientas.',
+      title: 'El problema',
       body: ['Instrucciones y prompts repartidos entre repositorios y conversaciones.', 'Configuraciones distintas para necesidades similares.', 'Conocimiento difícil de descubrir, mantener y compartir.', 'La incorporación depende demasiado del conocimiento informal.'],
     },
     {
@@ -41,8 +41,8 @@ import notes from './notes.json' with { type: 'json' };
     },
     {
       id: 'harness', noteIndex: 5, timing: '3:30', group: 1, layout: 'statement', kicker: 'El entorno alrededor del modelo',
-      title: 'El harness organiza el trabajo del modelo.',
-      lead: 'El modelo razona. El harness prepara, acota y valida su trabajo.',
+      title: 'Harness',
+      lead: 'Organizando el trabajo del modelo',
       featureCards: [
         { icon: 'FileText', title: 'Contexto', description: 'Docs, código, decisiones y requisitos.', detail: 'Qué sabe el modelo y para qué proyecto.' },
         { icon: 'BookOpen', title: 'Instrucciones y capacidades', description: 'Reglas del equipo, Agents y Skills.', detail: 'Cómo abordar la tarea.' },
@@ -53,22 +53,27 @@ import notes from './notes.json' with { type: 'json' };
       callToAction: 'No garantiza aciertos: hace explícito qué revisar y cómo mejorar.',
     },
     {
-      id: 'launchpad', noteIndex: 6, timing: '3:30', group: 2, layout: 'statement', kicker: 'AI Native Launchpad',
+      id: 'flujo-desarrollo', noteIndex: 6, timing: '2:00', group: 1, layout: 'statement', kicker: 'Harness en acción',
+      title: 'Flujo de desarrollo con agentes',
+      figure: { src: './flujo-desarrollo.png', alt: 'GitHub Copilot y el modelo de IA conectados al harness con documentación, MCPs, Skills y Agentes, aplicados a tres flujos: refinamiento y planificación, desarrollo de tarea y revisión de Pull Request.' },
+    },
+    {
+      id: 'launchpad', noteIndex: 7, timing: '3:30', group: 2, layout: 'statement', kicker: 'AI Native Launchpad',
       title: 'Un punto de gestión para llevar contexto y capacidades al workspace.',
       body: ['Organiza proyectos, tecnologías y artefactos.', 'Centraliza referencias a Skills, Agents, MCPs y workflows.', 'Resuelve el contexto adecuado para cada alcance.', 'Prepara configuraciones para distintas herramientas de IA.'],
       diagram: ['Proyecto', 'Tecnología o artefacto', 'Contexto y capacidades', 'Workspace'], connected: true,
     },
     {
-      id: 'demo', noteIndex: 7, timing: '4:00', group: 3, layout: 'statement', kicker: 'Demo guiada · AI Native Launchpad',
+      id: 'demo', noteIndex: 8, timing: '4:00', group: 3, layout: 'statement', kicker: 'Demo guiada · AI Native Launchpad',
       title: 'Recorrido interactivo: 20 paradas.',
       lead: 'Capturas locales de Atlas Commerce · recorrido guiado, no conexión en vivo.',
       walkthrough: {
-        src: './launchpad-demo/presentacion.html?v=4',
+        src: './launchpad-demo/presentacion.html?v=5',
         title: 'Recorrido interactivo de AI Native Launchpad: 20 paradas',
       },
     },
     {
-      id: 'cierre', noteIndex: 8, timing: '1:00', group: 4, layout: 'closing', kicker: 'Gracias · Cierre de sesión',
+      id: 'cierre', noteIndex: 9, timing: '1:00', group: 4, layout: 'closing', kicker: 'Gracias · Cierre de sesión',
       title: 'Gracias.',
       lead: 'Contexto compartido. Trabajo consistente. Validación humana.',
       callToAction: '¿Qué flujo probaríamos primero?',

@@ -16,6 +16,6 @@ for (const token of marked.lexer(source)) {
     current.markdown += token.raw;
   }
 }
-if (sections.length !== 9) throw new Error(`Se esperaban 9 bloques numerados en CONTENIDO-PRESENTACION.md; hay ${sections.length}.`);
+if (sections.length !== 10) throw new Error(`Se esperaban 10 bloques numerados en CONTENIDO-PRESENTACION.md; hay ${sections.length}.`);
 await writeFile(new URL('../src/notes.json', import.meta.url), JSON.stringify(sections, null, 2) + '\n');
 console.log(`Notas sincronizadas desde CONTENIDO-PRESENTACION.md: ${sections.length} bloques.`);

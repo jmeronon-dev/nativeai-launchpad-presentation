@@ -14,6 +14,7 @@ export class DeckController {
     this.onHashChange = this.onHashChange.bind(this);
     this.onPopState = this.onPopState.bind(this);
     this.onReducedMotionChange = this.onReducedMotionChange.bind(this);
+    this.onMessage = this.onMessage.bind(this);
   }
 
   init() {
@@ -27,6 +28,7 @@ export class DeckController {
     window.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('hashchange', this.onHashChange);
     window.addEventListener('popstate', this.onPopState);
+    window.addEventListener('message', this.onMessage);
     this.reducedMotionQuery.addEventListener?.('change', this.onReducedMotionChange);
 
     const initialIndex = this.indexFromHash(window.location.hash);
@@ -104,13 +106,30 @@ export class DeckController {
     }
   }
 
-  next(source = 'api') {
+  currentWalkthrough() {
+    const slide = this.presentation.slides[this.currentIndex];
+    if (!slide?.walkthrough) return null;
+    const frame = document.querySelector(`#slide-${slide.id} .walkthrough-frame iframe`);
+    return frame?.contentWindow ?? null;
+  }
+
+  onMessage(event) {
+    const frameWindow = this.currentWalkthrough();
+    if (!frameWindow || event.source !== frameWindow || event.origin !== window.location.origin) return;
+    if (event.data?.type !== 'launchpad-walkthrough') return;
+    if (event.data.direction === 'next') this.next('keyboard', { skipWalkthrough: true });
+    if (event.data.direction === 'previous') this.previous('keyboard', { skipWalkthrough: true });
+  }
+
+  next(source = 'api', { skipWalkthrough = false } = {}) {
+    if (!skipWalkthrough && this.currentWalkthrough()?.launchpadWalkthrough?.next()) return;
     const last = this.presentation.slides.length - 1;
     const target = this.currentIndex < 0 ? 0 : Math.min(last, this.currentIndex + 1);
     if (target !== this.currentIndex) this.goTo(target, { source });
   }
 
-  previous(source = 'api') {
+  previous(source = 'api', { skipWalkthrough = false } = {}) {
+    if (!skipWalkthrough && this.currentWalkthrough()?.launchpadWalkthrough?.previous()) return;
     const target = this.currentIndex <= 0 ? -1 : this.currentIndex - 1;
     if (target !== this.currentIndex) this.goTo(target, { source });
   }
@@ -204,6 +223,7 @@ export class DeckController {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hashchange', this.onHashChange);
     window.removeEventListener('popstate', this.onPopState);
+    window.removeEventListener('message', this.onMessage);
     this.reducedMotionQuery.removeEventListener?.('change', this.onReducedMotionChange);
   }
 }
