@@ -76,7 +76,7 @@ import notes from './notes.json' with { type: 'json' };
       id: 'cierre', noteIndex: 9, timing: '1:00', group: 4, layout: 'closing', kicker: 'Gracias · Cierre de sesión',
       title: 'Gracias.',
       lead: 'Contexto compartido. Trabajo consistente. Validación humana.',
-      callToAction: '¿Qué flujo probaríamos primero?',
+      callToAction: '¿Preguntas?',
     },
   ];
 

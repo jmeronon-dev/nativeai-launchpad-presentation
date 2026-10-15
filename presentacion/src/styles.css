@@ -803,8 +803,8 @@ button:focus-visible,
 .keyword[data-tone="7"] { color: #55a4d8; }
 .keyword[data-tone="8"] { color: #8ddcff; }
 .keyword:nth-child(n + 7) { display: inline-flex; }
-.slide-panel { padding: 100px 7% 124px; background: linear-gradient(90deg, rgba(6,11,16,.97), rgba(6,11,16,.93) 68%, rgba(6,11,16,.65)); }
-.slide-shell { width: min(1180px, 100%); max-height: calc(100dvh - 224px); border: 0; background: none; box-shadow: none; padding: 32px 0 10px; }
+.slide-panel { padding: 72px 4% 92px; background: linear-gradient(90deg, rgba(6,11,16,.97), rgba(6,11,16,.93) 68%, rgba(6,11,16,.65)); }
+.slide-shell { width: min(1560px, 100%); max-height: calc(100dvh - 164px); border: 0; background: none; box-shadow: none; padding: 32px 0 10px; }
 .slide-index { top: 0; right: 0; font-size: 13px; color: #b8c9d5; }
 .slide-kicker { font-size: 20px; line-height: 1.4; font-weight: 600; margin: 0 0 16px; }
 .slide-title { font-family: "Avenir Next Condensed", "Franklin Gothic Medium", sans-serif; font-size: 46px; max-width: 23ch; line-height: 1.06; font-weight: 700; letter-spacing: 0; }
@@ -823,6 +823,14 @@ button:focus-visible,
 .product-mark { aspect-ratio: 3/2; mix-blend-mode: screen; }
 .slide-figure { margin: 22px 0 0; }
 .slide-figure img { display: block; width: 100%; max-height: calc(100dvh - 400px); object-fit: contain; object-position: left top; border-radius: 8px; }
+#slide-flujo-desarrollo { padding: 60px 2% 84px; }
+#slide-flujo-desarrollo .slide-shell { display: flex; flex-direction: column; width: 100%; height: calc(100dvh - 144px); max-height: none; padding: 0; overflow: hidden; }
+#slide-flujo-desarrollo .slide-shell > div { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+#slide-flujo-desarrollo .slide-index { display: none; }
+#slide-flujo-desarrollo .slide-kicker { margin-bottom: 6px; }
+#slide-flujo-desarrollo .slide-title { max-width: none; font-size: 32px; }
+#slide-flujo-desarrollo .slide-figure { flex: 1; min-height: 0; margin-top: 12px; }
+#slide-flujo-desarrollo .slide-figure img { width: 100%; height: 100%; max-height: none; object-position: center; }
 .portrait { height: 400px; width: 100%; overflow: hidden; border-radius: 18px; }
 .portrait img { object-fit: cover; object-position: center 25%; border-radius: inherit; }
 .definitions { margin: 30px 0 0; }
@@ -879,11 +887,11 @@ button:focus-visible,
   .hero h1 { font-size: 112px; }
   .hero-subtitle { font-size: 24px; }
   .hero-mark { top: 165px; width: 160px; height: 110px; }
-  .slide-panel { padding-top: 160px; }
+  .slide-panel { padding-top: 96px; }
   .slide-kicker { font-size: 22px; }
   .slide-title { font-size: 54px; }
   .media-layout .slide-title { font-size: 52px; }
-  .slide-shell { max-height: calc(100dvh - 284px); }
+  .slide-shell { max-height: calc(100dvh - 188px); }
 }
 @media (max-width: 900px) {
   .hero { padding: 110px 6% 140px; }

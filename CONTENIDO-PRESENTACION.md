@@ -224,7 +224,7 @@ Contexto compartido. Trabajo consistente. Validación humana.
 
 ### Narracion
 
-“La tecnología puede acelerar el ciclo; la responsabilidad de las decisiones y de la calidad sigue siendo nuestra. Gracias. ¿Qué flujo probaríamos primero?”
+“La tecnología puede acelerar el ciclo; la responsabilidad de las decisiones y de la calidad sigue siendo nuestra. Gracias. ¿Preguntas?”
 
 ### Direccion visual
 
